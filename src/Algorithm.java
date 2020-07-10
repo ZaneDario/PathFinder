@@ -25,25 +25,32 @@ public class Algorithm {
 
             String output = "0,0";
             Path p = paths.get(i);
-            while(output != null)
+            while(output != null && !(output.equals("5,5")))
             {
                 output = Walk(p);
                 p.path.add(output);
-                System.out.println("The output was: " + output);
+                System.out.println("The chosen one is: " + output);
+                System.out.println(".................... Finish checking of this four possible directions.");
                 p.ways.clear();
             }
-            System.out.println("--------------------------");
+            System.out.println("--------------------- Finish checking this path.");
         }
 
-        /*for (int i = 0; i < paths.size(); i++) {
-            System.out.println("????");
-            if((paths.get(i).path.get(paths.get(i).path.size()-1).equals("5,5")))
+        for (int i = 0; i < paths.size(); i++) {
+
+            Path p = paths.get(i);
+            int index = p.path.size()-1;
+
+            String lastTile =p.path.get(index);
+
+            if(lastTile != null && lastTile.equals("5,5"))
             {
                 for (int j = 0; j < paths.get(i).path.size(); j++) {
                     System.out.print(paths.get(i).path.get(j) + " ");
                 }
+                System.out.println();
             }
-        }*/
+        }
     }
 
     String Walk(Path p)
@@ -82,7 +89,7 @@ public class Algorithm {
 
                     if(!contained)
                     {
-                        System.out.println("Possible: " + c);
+                        System.out.println("Is a valid direction: " + c);
                         w.add(c);
                     }
 
@@ -90,7 +97,7 @@ public class Algorithm {
 
             }
         }
-        System.out.println("....................");
+
         if(w.size() > 1)
         {
             for(int i = 1; i < w.size(); i++)
