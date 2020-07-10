@@ -5,6 +5,7 @@ public class Algorithm {
     Resources r;
     int[][] map;
     ArrayList<Path> paths = new ArrayList<>();
+    String source = "0,0";
     String destiny = "0,6";
 
     public static void main(String[] args) {
@@ -15,7 +16,7 @@ public class Algorithm {
     {
         r = new Resources();
         map = new Map().map;
-        paths.add(new Path(new ArrayList<>(), "0,0"));
+        paths.add(new Path(new ArrayList<>(), source));
         ManagePaths();
     }
 
@@ -24,7 +25,7 @@ public class Algorithm {
     {
         for (int i = 0; i < paths.size(); i++) {
 
-            String output = "0,0";
+            String output = source;
             Path p = paths.get(i);
             while(output != null && !(output.equals(destiny)))
             {
