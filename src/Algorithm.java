@@ -5,6 +5,7 @@ public class Algorithm {
     Resources r;
     int[][] map;
     ArrayList<Path> paths = new ArrayList<>();
+    String destiny = "0,6";
 
     public static void main(String[] args) {
         new Algorithm().run();
@@ -25,25 +26,24 @@ public class Algorithm {
 
             String output = "0,0";
             Path p = paths.get(i);
-            while(output != null && !(output.equals("5,5")))
+            while(output != null && !(output.equals(destiny)))
             {
                 output = Walk(p);
                 p.path.add(output);
                 System.out.println("The chosen one is: " + output);
-                System.out.println(".................... Finish checking of this four possible directions.");
+                System.out.println(".............. Finish checking of this four possible directions.");
                 p.ways.clear();
             }
-            System.out.println("--------------------- Finish checking this path.");
+            System.out.println("--------------------------------- Finish checking this path.");
         }
 
         for (int i = 0; i < paths.size(); i++) {
 
             Path p = paths.get(i);
             int index = p.path.size()-1;
+            String lastTile = p.path.get(index);
 
-            String lastTile =p.path.get(index);
-
-            if(lastTile != null && lastTile.equals("5,5"))
+            if(lastTile != null && lastTile.equals(destiny))
             {
                 for (int j = 0; j < paths.get(i).path.size(); j++) {
                     System.out.print(paths.get(i).path.get(j) + " ");
@@ -70,7 +70,7 @@ public class Algorithm {
             System.out.println(xNew+","+yNew);
 
             if(xNew >= 0 && xNew < map.length
-                        && yNew >= 0 && yNew < map.length)
+                        && yNew >= 0 && yNew < map[0].length)
             {
                 if(map[xNew][yNew] == 0)
                 {
